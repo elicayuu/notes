@@ -19,8 +19,11 @@ export default Header;
 
 const Root = styled.header`
   display: flex;
-  padding: 10px;
+  align-items: center;
+  height: 50px;
+  padding: 0 20px;
   border: 1px solid #eee;
+  box-sizing: border-box;
   background-color: #fff;
 `;
 
