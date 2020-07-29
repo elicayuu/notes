@@ -7,6 +7,7 @@ const NoteList: React.FC = () => {
       <Item>123</Item>
       <Item>123</Item>
       <Item>123</Item>
+      <Item>123</Item>
     </Root>
   );
 }
@@ -22,15 +23,13 @@ const Item = styled.button`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 30px;
-  border: 1px solid #eee;
+  height: 40px;
+  margin: 3px 0;
+  border: none;
   background-color: #fff;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 
   &:focus {
     outline: none;
-  }
-
-  &:not(:first-child) {
-    border-width: 0 1px 1px 1px;
   }
 `

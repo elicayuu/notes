@@ -22,9 +22,7 @@ const Root = styled.header`
   align-items: center;
   height: 50px;
   padding: 0 20px;
-  border: 1px solid #eee;
   box-sizing: border-box;
-  background-color: #fff;
 `;
 
 const Button = styled.button`
