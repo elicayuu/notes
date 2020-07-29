@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Header from './components/Header';
 import NoteList from './components/NoteList';
+import Editor from './components/Editor';
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
         <Side>
           <NoteList />
         </Side>
+        <Content>
+          <Editor />
+        </Content>
       </Main>
     </Root>
   );
@@ -38,3 +42,8 @@ const Side = styled.div`
   overflow-y: scroll;
   background-color: #f6f6f6;
 `;
+
+const Content = styled.div`
+  height: calc(100vh - 50px - 5px);
+  width: 40%;
+`
