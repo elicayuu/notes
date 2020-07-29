@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { ReactComponent as AddSvg } from '../images/add.svg';
 
-interface HeaderProps {}
-
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC = () => {
   return (
     <Root>
       <Button type="button">

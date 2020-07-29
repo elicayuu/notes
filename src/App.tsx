@@ -5,21 +5,25 @@ import Header from './components/Header';
 import NoteList from './components/NoteList';
 import Editor from './components/Editor';
 
+import { NoteProvider } from './libs/noteContext';
+
 function App() {
   return (
-    <Root>
-      <Header />
-      <Main>
-        <Side>
-          <NoteList />
-        </Side>
-        <Content>
-          <Editor />
-        </Content>
-      </Main>
-    </Root>
+    <NoteProvider>
+      <Root>
+        <Header />
+        <Main>
+          <Side>
+            <NoteList />
+          </Side>
+          <Content>
+            <Editor />
+          </Content>
+        </Main>
+      </Root>
+    </NoteProvider>
   );
-}
+};
 
 export default App;
 
@@ -34,7 +38,7 @@ const Main = styled.div`
   margin-top: 5px;
   box-sizing: border-box;
   background-color: #fff;
-`
+`;
 
 const Side = styled.div`
   width: 60%;
@@ -46,4 +50,4 @@ const Side = styled.div`
 const Content = styled.div`
   height: calc(100vh - 50px - 5px);
   width: 40%;
-`
+`;
