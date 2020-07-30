@@ -8,7 +8,7 @@ import { ReactComponent as SaveSvg } from '../images/save.svg';
 import { ReactComponent as DeleteSvg } from '../images/delete.svg';
 
 const Editor: React.FC = () => {
-  const { currentNote, updateNote, changeNoteMode } = useNote();
+  const { currentNote, updateNote, changeNoteMode, removeNote } = useNote();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -25,6 +25,11 @@ const Editor: React.FC = () => {
   const onSaveNote = () => {
     if (!currentNote) return;
     updateNote({ id: currentNote.id, title, content });
+  }
+
+  const onDeleteNote = () => {
+    if (!currentNote) return;
+    removeNote(currentNote.id);
   }
 
   const onCancel = () => {
@@ -55,7 +60,7 @@ const Editor: React.FC = () => {
             <SaveSvg />
             <span>Save</span>
           </IconButton>
-          <IconButton>
+          <IconButton onClick={onDeleteNote}>
             <DeleteSvg />
             <span>Delete</span>
           </IconButton>

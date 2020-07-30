@@ -55,8 +55,13 @@ export const NoteProvider: React.FC = ({ children }) => {
   };
 
   const removeNote = (id: string) => {
-    const newNotes = notes.filter(note => note.id === id);
+    const index = notes.findIndex(note => note.id === id);
+    const newNotes = notes.filter(note => note.id !== id);
+    const nextIndex = index === 0 ? 0 : index - 1;
+    const nextNote = newNotes[nextIndex];
     setNotes(newNotes);
+    setCurrentNote(nextNote);
+    changeNoteMode('view');
   };
 
   const updateNote = (newNote: Note) => {
