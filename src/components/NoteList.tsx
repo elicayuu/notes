@@ -17,7 +17,7 @@ const NoteList: React.FC = () => {
         return (
           <Item
             key={note.id}
-            active={note.id === currentNote?.id}
+            active={mode !== 'create' && note.id === currentNote?.id}
             onClick={() => onItemClick(note.id)}
           >
             {note.title}

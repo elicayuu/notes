@@ -7,7 +7,7 @@ import { useNote } from '../libs/noteContext';
 const NoteContent: React.FC = () => {
   const { mode } = useNote();
 
-  if (mode === 'edit') return <Editor />;
+  if (mode === 'edit' || mode === 'create') return <Editor />;
 
   return <MarkdownViewer />
 }

@@ -52,6 +52,7 @@ export const NoteProvider: React.FC = ({ children }) => {
     newNotes.unshift(newNote);
     setNotes(newNotes);
     setCurrentNote(newNote);
+    changeNoteMode('view');
   };
 
   const removeNote = (id: string) => {
