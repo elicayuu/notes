@@ -21,7 +21,7 @@ type NoteData = {
   notes: Note[];
   addNote: (note: Omit<Note, 'id'>) => void;
   removeNote: (id: string) => void;
-  updateNote: (id: string, data: Partial<Note>) => void;
+  updateNote: (note: Note) => void;
   viewNote: (id: string) => void;
   changeNoteMode: (mode: NoteMode) => void;
 }
@@ -40,6 +40,10 @@ export const NoteProvider: React.FC = ({ children }) => {
   const [mode, setMode] = useState<NoteMode>('view');
   const [notes, setNotes] = useState<Note[]>(defaultNotes);
   const [currentNote, setCurrentNote] = useState<Note>(notes[0]);
+
+  const changeNoteMode = (mode: NoteMode) => {
+    setMode(mode);
+  }
   
   const addNote = (note: Omit<Note, 'id'>) => {
     const newNotes = [...notes];
@@ -55,18 +59,19 @@ export const NoteProvider: React.FC = ({ children }) => {
     setNotes(newNotes);
   };
 
-  const updateNote = (id: string, data: Partial<Note>) => {
-    
+  const updateNote = (newNote: Note) => {
+    const newNotes = [...notes];
+    const index = newNotes.findIndex(note => note.id === newNote.id);
+    newNotes.splice(index, 1, newNote);
+    setNotes(newNotes);
+    setCurrentNote(newNote);
+    changeNoteMode('view');
   };
 
   const viewNote = (id: string) => {
     const targetNote = notes.find(note => note.id === id);
     if (!targetNote) return;
     setCurrentNote(targetNote);
-  }
-
-  const changeNoteMode = (mode: NoteMode) => {
-    setMode(mode);
   }
   
   const contextData = {

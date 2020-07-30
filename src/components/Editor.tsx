@@ -8,21 +8,33 @@ import { ReactComponent as SaveSvg } from '../images/save.svg';
 import { ReactComponent as DeleteSvg } from '../images/delete.svg';
 
 const Editor: React.FC = () => {
-  const { currentNote, addNote } = useNote();
+  const { currentNote, updateNote, changeNoteMode } = useNote();
   const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   const onTitleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
     setTitle(value);
   }
 
-  const onAddNote = () => {
-    addNote({ title, content: '' });
+  const onContentChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
+    const value = event.currentTarget.value;
+    setContent(value);
+  }
+
+  const onSaveNote = () => {
+    if (!currentNote) return;
+    updateNote({ id: currentNote.id, title, content });
+  }
+
+  const onCancel = () => {
+    changeNoteMode('view');
   }
 
   useEffect(() => {
     if (!currentNote) return;
     setTitle(currentNote.title);
+    setContent(currentNote.content);
   }, [currentNote])
 
   return (
@@ -30,16 +42,16 @@ const Editor: React.FC = () => {
       <EditorHeader>
         <input value={title} onChange={onTitleChange} />
       </EditorHeader>
-      <EditorContent>{currentNote?.content}</EditorContent>
+      <EditorContent value={content} onChange={onContentChange}></EditorContent>
       <Footer>
         <div>
-          <IconButton>
+          <IconButton onClick={onCancel}>
             <ClearSvg />
-            <span>Clear</span>
+            <span>Cancel</span>
           </IconButton>
         </div>
         <div>
-          <IconButton onClick={onAddNote}>
+          <IconButton onClick={onSaveNote}>
             <SaveSvg />
             <span>Save</span>
           </IconButton>
@@ -74,8 +86,9 @@ const EditorHeader = styled.div`
     box-sizing: border-box;
   }
 `
-const EditorContent = styled.div`
+const EditorContent = styled.textarea`
   flex-grow: 1;
+  resize: none;
 `
 
 const Footer = styled.div`
