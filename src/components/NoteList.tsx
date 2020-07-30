@@ -4,7 +4,12 @@ import styled from 'styled-components';
 import { useNote } from '../libs/noteContext';
 
 const NoteList: React.FC = () => {
-  const { notes, currentNote, viewNote } = useNote();
+  const { notes, currentNote, viewNote, mode } = useNote();
+
+  const onItemClick = (id: string) => {
+    if(mode === 'edit' || mode === 'create') return;
+    viewNote(id)
+  }
 
   return (
     <Root>
@@ -13,7 +18,7 @@ const NoteList: React.FC = () => {
           <Item
             key={note.id}
             active={note.id === currentNote?.id}
-            onClick={() => viewNote(note.id)}
+            onClick={() => onItemClick(note.id)}
           >
             {note.title}
           </Item>

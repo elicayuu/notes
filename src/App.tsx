@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Header from './components/Header';
 import NoteList from './components/NoteList';
-import Editor from './components/Editor';
+import NoteContent from './components/NoteContent';
 
 import { NoteProvider } from './libs/noteContext';
 
@@ -17,7 +17,7 @@ function App() {
             <NoteList />
           </Side>
           <Content>
-            <Editor />
+            <NoteContent />
           </Content>
         </Main>
       </Root>

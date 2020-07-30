@@ -23,6 +23,7 @@ type NoteData = {
   removeNote: (id: string) => void;
   updateNote: (id: string, data: Partial<Note>) => void;
   viewNote: (id: string) => void;
+  changeNoteMode: (mode: NoteMode) => void;
 }
 
 const NoteContext = React.createContext<NoteData>({
@@ -32,6 +33,7 @@ const NoteContext = React.createContext<NoteData>({
   removeNote: () => {},
   updateNote: () => {},
   viewNote: () => {},
+  changeNoteMode: () => {},
 });
 
 export const NoteProvider: React.FC = ({ children }) => {
@@ -62,6 +64,10 @@ export const NoteProvider: React.FC = ({ children }) => {
     if (!targetNote) return;
     setCurrentNote(targetNote);
   }
+
+  const changeNoteMode = (mode: NoteMode) => {
+    setMode(mode);
+  }
   
   const contextData = {
     currentNote,
@@ -71,6 +77,7 @@ export const NoteProvider: React.FC = ({ children }) => {
     removeNote,
     updateNote,
     viewNote,
+    changeNoteMode
   };
 
   return (
