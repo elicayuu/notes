@@ -14,7 +14,7 @@ const Header: React.FC = () => {
 
   return (
     <Root>
-      <Button type="button" onClick={onNewNote}>
+      <Button type="button" onClick={onNewNote} disabled={mode === 'edit' || mode === 'create'}>
         <AddSvg />
         <span>New note</span>
       </Button>
