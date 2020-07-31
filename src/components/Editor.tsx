@@ -23,21 +23,19 @@ const Editor: React.FC = () => {
   };
 
   const onSaveNote = () => {
-    if (!currentNote) return;
-
     if (mode === 'create') {
       addNote({ title, content });
     } else {
+      if (!currentNote) return;
       updateNote({ id: currentNote.id, title, content });
     }
   };
 
   const onDeleteNote = () => {
-    if (!currentNote) return;
-
     if (mode === 'create') {
       changeNoteMode('view');
     } else {
+      if (!currentNote) return;
       removeNote(currentNote.id);
     }
   };
