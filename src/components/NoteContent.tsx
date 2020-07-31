@@ -5,7 +5,9 @@ import Editor from './Editor';
 import { useNote } from '../libs/noteContext';
 
 const NoteContent: React.FC = () => {
-  const { mode } = useNote();
+  const { mode, notes } = useNote();
+
+  if (notes.length === 0 && mode === 'view') return null;
 
   if (mode === 'edit' || mode === 'create') return <Editor />;
 
