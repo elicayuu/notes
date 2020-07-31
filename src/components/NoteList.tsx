@@ -8,11 +8,11 @@ const NoteList: React.FC = () => {
 
   const onItemClick = (id: string) => {
     if(mode === 'edit' || mode === 'create') return;
-    viewNote(id)
-  }
+    viewNote(id);
+  };
 
   return (
-    <Root>
+    <div>
       {notes.map(note => {
         return (
           <Item
@@ -24,15 +24,11 @@ const NoteList: React.FC = () => {
           </Item>
         )
       })}
-    </Root>
+    </div>
   );
-}
+};
 
 export default NoteList;
-
-const Root = styled.div`
-
-`;
 
 const Item = styled.button<{ active: boolean }>`
   display: flex;
@@ -49,4 +45,4 @@ const Item = styled.button<{ active: boolean }>`
   &:focus {
     outline: none;
   }
-`
+`;

@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const onNewNote = () => {
     if (mode === 'edit') return;
     changeNoteMode('create');
-  }
+  };
 
   return (
     <Root>

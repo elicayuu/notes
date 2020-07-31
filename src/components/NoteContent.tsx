@@ -10,6 +10,6 @@ const NoteContent: React.FC = () => {
   if (mode === 'edit' || mode === 'create') return <Editor />;
 
   return <MarkdownViewer />
-}
+};
 
 export default NoteContent;

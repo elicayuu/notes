@@ -7,7 +7,7 @@ import { useNote } from '../libs/noteContext';
 import { ReactComponent as EditSvg } from '../images/edit.svg';
 
 const MarkdownViewer: React.FC = () => {
-  const { currentNote, changeNoteMode } = useNote();
+  const { currentNote, changeNoteMode, isLoading } = useNote();
 
   return (
     <Root>
@@ -15,7 +15,7 @@ const MarkdownViewer: React.FC = () => {
         <h1>{currentNote?.title}</h1>
       </EditorHeader>
       <EditorContent>
-        <ReactMarkdown source={currentNote?.content} />
+        <ReactMarkdown source={isLoading ? 'Loading...' : currentNote?.content} />
       </EditorContent>
       <Footer>
         <IconButton onClick={() => changeNoteMode('edit')}>
@@ -25,7 +25,7 @@ const MarkdownViewer: React.FC = () => {
       </Footer>
     </Root>
   );
-}
+};
 
 export default MarkdownViewer;
 
@@ -52,11 +52,13 @@ const EditorHeader = styled.div`
     font-size: 1em;
     font-weight: normal;
   }
-`
+`;
+
 const EditorContent = styled.div`
+  position: relative;
   flex-grow: 1;
   padding: 0 10px;
-`
+`;
 
 const Footer = styled.div`
   display: flex;
@@ -66,7 +68,7 @@ const Footer = styled.div`
   border: 1px solid #eee;
   padding: 0 10px;
   background-color: #f6f6f6;
-`
+`;
 
 const IconButton = styled.button`
   display: inline-flex;
@@ -74,4 +76,4 @@ const IconButton = styled.button`
   align-items: center;
   border: none;
   background: none;
-`
+`;
